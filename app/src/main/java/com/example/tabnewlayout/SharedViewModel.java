@@ -1,25 +1,32 @@
 package com.example.tabnewlayout;
 
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-
-import java.util.ArrayList;
+import android.app.Application;
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import java.util.List;
 
-public class SharedViewModel extends ViewModel {
-    public MutableLiveData<List<String>> tab1Items = new MutableLiveData<>(new ArrayList<>());
-    public MutableLiveData<List<String>> tab2Items = new MutableLiveData<>(new ArrayList<>());
+public class SharedViewModel extends AndroidViewModel {
+    private final PersonRepository repository;
+    public LiveData<List<Person>> tab1Items;
+    public LiveData<List<Person>> tab2Items;
 
-    public void moveItemToTab2(String item) {
-        List<String> currentTab1Items = tab1Items.getValue();
-        List<String> currentTab2Items = tab2Items.getValue();
+    public SharedViewModel(@NonNull Application application) {
+        super(application);
+        repository = new PersonRepository(application);
+        tab1Items = repository.getTab1Items();
+        tab2Items = repository.getTab2Items();
+    }
 
-        if (currentTab1Items != null && currentTab2Items != null) {
-            currentTab1Items.remove(item);
-            currentTab2Items.add(item);
+    public void addPersonToTab1(Person person) {
+        repository.insertPerson(person);
+    }
 
-            tab1Items.setValue(currentTab1Items);
-            tab2Items.setValue(currentTab2Items);
-        }
+    public void moveItemToTab2(Person person) {
+        repository.moveItem(person.getId(), 2);
+    }
+
+    public void deletePerson(Person person) {
+        repository.deletePerson(person);
     }
 }

@@ -1,16 +1,16 @@
 package com.example.tabnewlayout;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class SecondTabFragment extends Fragment {
 
@@ -26,11 +26,13 @@ public class SecondTabFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerview);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
-        adapter = new ItemAdapter(sharedViewModel.tab2Items.getValue());
+        adapter = new ItemAdapter(sharedViewModel.tab2Items.getValue()!=null? sharedViewModel.tab2Items.getValue():new ArrayList<>(), sharedViewModel);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 
         // Observe data changes
+        sharedViewModel.tab2Items.observe(getViewLifecycleOwner(), adapter::updateItems);
+
         sharedViewModel.tab2Items.observe(getViewLifecycleOwner(), updatedList -> {
             adapter.updateItems(updatedList);
         });

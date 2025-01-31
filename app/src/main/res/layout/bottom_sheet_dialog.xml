@@ -6,10 +6,15 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/inputText"
+        android:id="@+id/inputname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter a value" />
+        android:hint="Enter a name" />
+    <EditText
+        android:id="@+id/inputage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter a age" />
 
     <Button
         android:id="@+id/btnAdd"
