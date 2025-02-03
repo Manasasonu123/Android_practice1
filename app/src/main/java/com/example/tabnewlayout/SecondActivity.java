@@ -59,15 +59,15 @@ public class SecondActivity extends AppCompatActivity {
         sharedPreferences=getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         loadUserData();
 
-        // Bottom Sheet setup
-        LinearLayout bottomSheet = findViewById(R.id.sheet);
-        BottomSheetBehavior<LinearLayout> bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
-
-        // Set peekHeight (you can adjust this value based on your design)
-        bottomSheetBehavior.setPeekHeight(200);  // Set the peek height to 200dp (or any value you prefer)
-
-        // Optional: Set BottomSheet state to collapsed initially
-        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+//        // Bottom Sheet setup
+//        LinearLayout bottomSheet = findViewById(R.id.sheet);
+//        BottomSheetBehavior<LinearLayout> bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+//
+//        // Set peekHeight (you can adjust this value based on your design)
+//        bottomSheetBehavior.setPeekHeight(200);  // Set the peek height to 200dp (or any value you prefer)
+//
+//        // Optional: Set BottomSheet state to collapsed initially
+//        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
 
         viewPager.setAdapter(new FragmentStateAdapter(this) {
