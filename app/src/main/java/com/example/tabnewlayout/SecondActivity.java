@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
@@ -21,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -57,6 +59,17 @@ public class SecondActivity extends AppCompatActivity {
         sharedPreferences=getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         loadUserData();
 
+        // Bottom Sheet setup
+        LinearLayout bottomSheet = findViewById(R.id.sheet);
+        BottomSheetBehavior<LinearLayout> bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+
+        // Set peekHeight (you can adjust this value based on your design)
+        bottomSheetBehavior.setPeekHeight(200);  // Set the peek height to 200dp (or any value you prefer)
+
+        // Optional: Set BottomSheet state to collapsed initially
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+
+
         viewPager.setAdapter(new FragmentStateAdapter(this) {
             @NonNull
             @Override
@@ -86,6 +99,8 @@ public class SecondActivity extends AppCompatActivity {
                 tab.setText("Second Tab");
             }
         }).attach();
+
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
