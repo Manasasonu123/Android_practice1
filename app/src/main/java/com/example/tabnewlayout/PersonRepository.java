@@ -25,7 +25,9 @@ public class PersonRepository {
     }
 
     public void moveItem(int personId, int newTab) {
-        executorService.execute(() -> personDao.moveItem(personId, newTab));
+        executorService.execute(() -> {
+            personDao.moveItem(personId, newTab);
+        });
     }
 
     public LiveData<List<Person>> getTab1Items() {
@@ -34,5 +36,9 @@ public class PersonRepository {
 
     public LiveData<List<Person>> getTab2Items() {
         return personDao.getTab2Items();
+    }
+
+    public void shutdown() {
+        executorService.shutdown();
     }
 }

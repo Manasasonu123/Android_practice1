@@ -1,5 +1,6 @@
 package com.example.tabnewlayout;
 
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,11 +39,33 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         holder.textname.setText(person.getName()); // Assuming `Person` has `getName()`
         holder.textage.setText(person.getAge());
 
-        holder.delimg.setOnClickListener(v -> {
-            sharedViewModel.deletePerson(person);
-            sharedViewModel.tab2Items.getValue().remove(person);  // ✅ Remove from tab2Items list
-            notifyDataSetChanged();
-        });
+        // Decode the encrypted image before displaying it
+        String base64Image = person.getBase64Image();
+        if (base64Image != null && !base64Image.isEmpty()) {
+            try {
+                Bitmap decodedBitmap = ImageEncryption.decodeBase64ToBitmap(base64Image);
+                holder.imageView.setImageBitmap(decodedBitmap);
+            } catch (Exception e) {
+                e.printStackTrace();
+                holder.imageView.setImageResource(R.drawable.image_search); // If error occurs, show placeholder image
+            }
+        } else {
+            holder.imageView.setImageResource(R.drawable.image_search); // Show placeholder if no image
+        }
+
+//        holder.delimg.setOnClickListener(v -> {
+//            sharedViewModel.deletePerson(person);
+//
+//            // Retrieve the current list safely
+//            List<Person> updatedList = sharedViewModel.getTab2Items().getValue();
+//
+//            if (updatedList != null) { // ✅ Prevent NullPointerException
+//                updatedList.remove(person);
+//                updateItems(updatedList);
+//            }
+//        });
+        holder.delimg.setOnClickListener(v -> sharedViewModel.deletePerson(person));
+
     }
 
     @Override
@@ -64,16 +87,19 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         diffResult.dispatchUpdatesTo(this);
     }
 
+
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textname;
         TextView textage;
         ImageView delimg;
+        ImageView imageView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textname = itemView.findViewById(R.id.itemText1);
             textage=itemView.findViewById(R.id.itemText2);
             delimg=itemView.findViewById(R.id.delete);
+            imageView = itemView.findViewById(R.id.imageView);
         }
     }
 

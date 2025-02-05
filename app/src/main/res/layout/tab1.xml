@@ -5,19 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- RecyclerView or any other scrollable content -->
+    <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:clipToPadding="false"
+        android:paddingBottom="80dp"/> <!-- Added padding to avoid FAB overlapping last item -->
 
-    <!-- Floating Action Button fixed at the right bottom -->
+    <!-- Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="32dp"
-        android:backgroundTint="#CDCBCB"
-        android:src="@drawable/baseline_add" />
+        android:layout_gravity="bottom|end"
+    android:layout_margin="16dp"
+    app:backgroundTint="#D476E4"
+    android:src="@drawable/baseline_add" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

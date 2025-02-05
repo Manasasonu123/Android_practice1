@@ -3,18 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:layout_margin="20dp">
 
     <EditText
         android:id="@+id/inputname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter a name" />
+
     <EditText
         android:id="@+id/inputage"
-        android:layout_width="match_parent"
+        android:layout_width="377dp"
         android:layout_height="wrap_content"
         android:hint="Enter a age" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+    <Button
+        android:id="@+id/btnuplaod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:text="Upload Image"
+        android:backgroundTint="#7B7979"/>
+
+        <ImageView
+            android:id="@+id/imageViewInBottomSheet"
+            android:layout_width="120dp"
+            android:layout_height="45dp"
+            android:src="@drawable/image_search" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnAdd"
