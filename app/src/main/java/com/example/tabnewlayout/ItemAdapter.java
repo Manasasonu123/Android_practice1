@@ -52,18 +52,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         } else {
             holder.imageView.setImageResource(R.drawable.image_search); // Show placeholder if no image
         }
-
-//        holder.delimg.setOnClickListener(v -> {
-//            sharedViewModel.deletePerson(person);
-//
-//            // Retrieve the current list safely
-//            List<Person> updatedList = sharedViewModel.getTab2Items().getValue();
-//
-//            if (updatedList != null) { // ✅ Prevent NullPointerException
-//                updatedList.remove(person);
-//                updateItems(updatedList);
-//            }
-//        });
         holder.delimg.setOnClickListener(v -> sharedViewModel.deletePerson(person));
 
     }

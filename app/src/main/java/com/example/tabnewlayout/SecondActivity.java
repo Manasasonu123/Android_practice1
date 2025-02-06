@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -31,7 +32,8 @@ import java.util.ArrayList;
 public class SecondActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
-    private ViewPager2 viewPager;
+     private ViewPager2 viewPager;
+    private FragmentManager fragmentManager;
     private ImageView imgbutton;
 
     private TextView tvName,tvAge,tvAddress;

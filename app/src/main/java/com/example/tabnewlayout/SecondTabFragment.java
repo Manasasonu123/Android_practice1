@@ -19,15 +19,19 @@ public class SecondTabFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab2, container, false);
+        recyclerView = view.findViewById(R.id.recyclerViewTab2);
 
-        recyclerView = view.findViewById(R.id.recyclerview);
+        // Use the same ViewModel instance for both tabs (activity-scoped)
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
         adapter = new ItemAdapter(new ArrayList<>(), sharedViewModel);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
 
         sharedViewModel.getTab2Items().observe(getViewLifecycleOwner(), updatedList -> {
             if (updatedList != null) {

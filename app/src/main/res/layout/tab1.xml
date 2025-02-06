@@ -10,9 +10,7 @@
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        android:clipToPadding="false"
-        android:paddingBottom="80dp"/> <!-- Added padding to avoid FAB overlapping last item -->
+        android:scrollbars="vertical" /> <!-- Added padding to avoid FAB overlapping last item -->
 
     <!-- Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
